@@ -8,8 +8,24 @@ async function handleData() {
   if (!data) return;
 
   const transacoes = data.map(normalizarDados);
-  transacoes.forEach((item) => {
-    console.log(item.data);
+  preencherTabela(transacoes);
+}
+
+function preencherTabela(data: Transacao[]): void {
+  const tabela = document.querySelector("#table tbody");
+
+  if (!tabela) return;
+
+  data.forEach((item) => {
+    tabela.innerHTML += `
+    <tr>
+    <td>${item.nome}</td>
+    <td>${item.email}</td>
+    <td>R$ ${item.moeda}</td>
+    <td>${item.pagamento}</td>
+    <td>${item.status}</td>
+    </tr>
+    `;
   });
 }
 

@@ -16,12 +16,49 @@
     button {
       font-size: 1.5rem;
     }
+
+    table {
+      border-spacing: 0;
+      text-align: left;
+    }
+
+    table td,
+    table th {
+      padding: .5rem 1rem;
+    }
+
+    table tr:nth-child(even) {
+      background-color: rgba(0, 0, 0, .0625);
+    }
+
+    h2,
+    p {
+      margin-left: 1rem;
+    }
+
+    h2 {
+      padding-top: 1rem;
+    }
   </style>
 
 </head>
 
 <body>
+  <h2>Dados</h2>
+  <table id="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Compra</th>
+        <th>Pagamento</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
 
+    </tbody>
+  </table>
   <script type="module" src="./dist/script.js"></script>
 </body>
 
