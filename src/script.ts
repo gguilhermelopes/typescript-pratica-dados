@@ -8,9 +8,7 @@ async function handleData() {
   if (!data) return;
 
   const transacoes = data.map(normalizarDados);
-  transacoes?.forEach((item) => {
-    console.log(item.novo);
-  });
+  console.log(transacoes.forEach((i) => console.log(i.valor)));
 }
 
 handleData();
