@@ -1,3 +1,4 @@
+import { CountList } from "./countBy.js";
 import Estatisticas from "./Estatisticas.js";
 import fetchData from "./fetchData.js";
 import normalizarDados from "./normalizarDados.js";
@@ -13,14 +14,32 @@ async function handleData() {
   preencherEstatisticas(transacoes);
 }
 
+function preencherLista(lista: CountList, containerId: string) {
+  const containerElement = document.getElementById(containerId);
+  if (containerElement) {
+    Object.keys(lista).forEach((key) => {
+      containerElement.innerHTML += `<p>${key}: ${lista[key]}`;
+    });
+  }
+}
+
 function preencherEstatisticas(data: Transacao[]): void {
   const transacoes = new Estatisticas(data);
+
+  preencherLista(transacoes.pagamento, "pagamento");
+  preencherLista(transacoes.status, "status");
+
   const totalElement = document.querySelector<HTMLElement>("#total span");
   if (totalElement) {
     totalElement.innerText = transacoes.total.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
+  }
+
+  const diaElement = document.querySelector<HTMLElement>("#dia span");
+  if (diaElement) {
+    diaElement.innerText = `${transacoes.melhorDia[0]}`;
   }
 }
 

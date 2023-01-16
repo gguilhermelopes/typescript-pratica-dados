@@ -9,14 +9,28 @@ async function handleData() {
     preencherTabela(transacoes);
     preencherEstatisticas(transacoes);
 }
+function preencherLista(lista, containerId) {
+    const containerElement = document.getElementById(containerId);
+    if (containerElement) {
+        Object.keys(lista).forEach((key) => {
+            containerElement.innerHTML += `<p>${key}: ${lista[key]}`;
+        });
+    }
+}
 function preencherEstatisticas(data) {
     const transacoes = new Estatisticas(data);
+    preencherLista(transacoes.pagamento, "pagamento");
+    preencherLista(transacoes.status, "status");
     const totalElement = document.querySelector("#total span");
     if (totalElement) {
         totalElement.innerText = transacoes.total.toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
         });
+    }
+    const diaElement = document.querySelector("#dia span");
+    if (diaElement) {
+        diaElement.innerText = `${transacoes.melhorDia[0]}`;
     }
 }
 function preencherTabela(data) {
